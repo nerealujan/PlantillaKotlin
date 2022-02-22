@@ -1,0 +1,116 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "PlantillaKotling ${defaultConfig.versionName} - ${variant.productFlavors[0].name}.apk"
+                }
+            }
+        }
+    }
+    flavorDimensions "app"
+    productFlavors {
+
+        dev {
+            dimension "app"
+            applicationIdSuffix ".dev"
+            buildConfigField "String", "HOST", '"INT"'
+            buildConfigField "String", "AZURE_URL", '"https://dsupervisorparadas-b.cloudapp.repsol.com/api/"'
+            resValue "string", "app_name", "[INT] PlantillaKotling"
+        }
+
+        pre {
+            dimension "app"
+            applicationIdSuffix ".pre"
+            buildConfigField "String", "HOST", '"PRE"'
+            buildConfigField "String", "AZURE_URL", '"https://asupervisorparadas-b.cloudapp.repsol.com/api/"'
+            resValue "string", "app_name", "[PRE] PlantillaKotling"
+        }
+
+        pro {
+            dimension "app"
+            buildConfigField "String", "HOST", '"PRO"'
+            buildConfigField "String", "BUS_URL", '"https://soa.repsol.com:8243/supervisorParadas/"'
+            buildConfigField "String", "MAXIMO_URL", '"https://soa.repsol.com:8243/dcst_maximo/maximo/oslc/os/"'
+            buildConfigField "String", "AZURE_URL", '"https://supervisorparadas-b.cloudapp.repsol.com/api/"'
+            resValue "string", "app_name", "PlantillaKotling"
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // kotlin lang && anko lib
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+
+    // gson - manage json strings
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // retrofit - rest api request
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$roomdb_version"
+    kapt "androidx.room:room-compiler:$roomdb_version"
+
+    // rx
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    // butterknife
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
+}
