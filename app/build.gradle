@@ -38,7 +38,7 @@ android {
             dimension "app"
             applicationIdSuffix ".dev"
             buildConfigField "String", "HOST", '"INT"'
-            buildConfigField "String", "AZURE_URL", '"https://dsupervisorparadas-b.cloudapp.repsol.com/api/"'
+            buildConfigField "String", "AZURE_URL", '""'
             resValue "string", "app_name", "[INT] PlantillaKotling"
         }
 
@@ -46,16 +46,16 @@ android {
             dimension "app"
             applicationIdSuffix ".pre"
             buildConfigField "String", "HOST", '"PRE"'
-            buildConfigField "String", "AZURE_URL", '"https://asupervisorparadas-b.cloudapp.repsol.com/api/"'
+            buildConfigField "String", "AZURE_URL", '""'
             resValue "string", "app_name", "[PRE] PlantillaKotling"
         }
 
         pro {
             dimension "app"
             buildConfigField "String", "HOST", '"PRO"'
-            buildConfigField "String", "BUS_URL", '"https://soa.repsol.com:8243/supervisorParadas/"'
-            buildConfigField "String", "MAXIMO_URL", '"https://soa.repsol.com:8243/dcst_maximo/maximo/oslc/os/"'
-            buildConfigField "String", "AZURE_URL", '"https://supervisorparadas-b.cloudapp.repsol.com/api/"'
+            buildConfigField "String", "BUS_URL", '""'
+            buildConfigField "String", "MAXIMO_URL", '""'
+            buildConfigField "String", "AZURE_URL", '""'
             resValue "string", "app_name", "PlantillaKotling"
         }
     }
@@ -80,7 +80,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 

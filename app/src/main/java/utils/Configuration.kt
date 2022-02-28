@@ -1,12 +1,17 @@
 package utils
 
 import android.content.Context
-import com.google.gson.Gson
 
-class Configuration (context: Context) {
-    private val mReader: android.content.SharedPreferences = TODO()
+class Configuration(context: Context) {
+    private var mReader: android.content.SharedPreferences
     private val mEditor: android.content.SharedPreferences.Editor
 
+
+    init {
+        mReader = context.getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE)
+        mEditor = mReader.edit()
+        mEditor.apply()
+    }
 
     fun clear(): Configuration {
         mEditor.clear()
@@ -44,7 +49,7 @@ class Configuration (context: Context) {
     }
 
     companion object {
-
+        private const val NAME_PREFERENCES = "myApp"
         const val TOKEN = "token"
     }
 
